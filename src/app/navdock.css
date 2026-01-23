@@ -1,0 +1,182 @@
+.navdockShell {
+  position: fixed;
+  top: 20px;
+  left: 22px;
+  right: 22px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.navdockBrand {
+  pointer-events: auto;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  user-select: none;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.navdockBrand__w {
+  color: #7c3aed;
+}
+
+.navdock {
+  pointer-events: auto;
+  position: relative;
+  height: 64px;
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  overflow: hidden;
+}
+
+/* Desktop / geral */
+.navdock--4 {
+  width: 256px;
+  grid-template-columns: repeat(4, 64px);
+}
+
+.navdock__btn {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.32);
+  text-decoration: none;
+  position: relative;
+  transition: color 180ms ease, transform 180ms ease, filter 180ms ease;
+}
+
+.navdock__btn:hover {
+  color: rgba(255, 255, 255, 0.88);
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.16));
+}
+
+.navdock__btn.is-active {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.navdock__icon {
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.navdock__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.navdock__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navdock__indicatorBar {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 42px;
+  height: 6px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.16);
+}
+
+.navdock__spotlight {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 110px;
+  height: 120px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at top,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  opacity: 0.8;
+}
+
+/* ===== MOBILE: some o nome e fica só o dock centralizado ===== */
+@media (max-width: 720px) {
+  .navdockShell {
+    top: 10px;
+    left: 0;
+    right: 0;
+
+    /* centraliza o dock no topo */
+    justify-content: center;
+  }
+
+  /* tira o nome no mobile */
+  .navdockBrand {
+    display: none;
+  }
+
+  /* dock mais compacto */
+  .navdock {
+    height: 58px;
+    border-radius: 16px;
+  }
+
+  .navdock--4 {
+    width: 240px;
+    grid-template-columns: repeat(4, 60px);
+  }
+
+  .navdock__btn {
+    width: 60px;
+    height: 58px;
+  }
+
+  .navdock__indicator {
+    width: 60px;
+    height: 58px;
+  }
+
+  .navdock__indicatorBar {
+    top: 5px;
+    width: 38px;
+    height: 6px;
+  }
+
+  .navdock__spotlight {
+    top: -12px;
+    width: 100px;
+    height: 110px;
+    opacity: 0.75;
+  }
+}

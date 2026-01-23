@@ -1,0 +1,331 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./navdock.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===============================
+   DESIGN TOKENS (IDENTIDADE)
+================================ */
+
+:root {
+  --bg-main: #05070d;       /* fundo principal */
+  --bg-secondary: #07111a;  /* fundo secundário */
+  --surface: rgba(10, 16, 25, 0.72);
+
+  --text-main: rgba(255, 255, 255, 0.92);
+  --text-muted: rgba(255, 255, 255, 0.6);
+
+  --accent: #22d3ee;        /* Electric Cyan */
+  --accent-soft: #34d399;   /* Mint */
+  --accent-dark: #0ea5b7;
+
+  --glow: rgba(34, 211, 238, 0.35);
+}
+
+/* ===============================
+   BASE RESET
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color-scheme: dark;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  color: var(--text-main);
+  background: radial-gradient(
+      1200px 800px at 20% -10%,
+      rgba(34, 211, 238, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      1000px 700px at 90% 20%,
+      rgba(52, 211, 153, 0.06),
+      transparent 55%
+    ),
+    linear-gradient(180deg, var(--bg-secondary), var(--bg-main));
+}
+
+/* Imagens/canvas não estouram o container */
+img,
+canvas,
+svg,
+video {
+  max-width: 100%;
+}
+
+/* Melhor para âncoras */
+.hash-span {
+  margin-top: -100px;
+  padding-bottom: 100px;
+  display: block;
+}
+
+/* ===============================
+   GRADIENTES NOVOS (IDENTIDADE)
+================================ */
+
+.black-gradient {
+  background: linear-gradient(135deg, #020617, #050b18);
+}
+
+/* Mantive o nome, mudei a paleta (pra não quebrar imports/uso no projeto) */
+.violet-gradient {
+  background: linear-gradient(
+    -90deg,
+    var(--accent) 0%,
+    rgba(34, 211, 238, 0) 100%
+  );
+}
+
+.green-pink-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--accent-soft) 0%,
+    var(--accent) 100%
+  );
+}
+
+.orange-text-gradient {
+  background: linear-gradient(to top, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.green-text-gradient {
+  background: linear-gradient(to top, var(--accent-soft), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-text-gradient {
+  background: linear-gradient(to top, #38bdf8, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pink-text-gradient {
+  background: linear-gradient(to top, var(--accent), var(--accent-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===============================
+   CANVAS LOADER (CYAN)
+================================ */
+
+.canvas-loader {
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.1s infinite ease;
+  transform: translateZ(0);
+}
+
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow:
+      0em -2.6em 0em 0em var(--accent),
+      1.8em -1.8em 0 0em rgba(34, 211, 238, 0.35),
+      2.5em 0em 0 0em rgba(34, 211, 238, 0.25),
+      1.75em 1.75em 0 0em rgba(34, 211, 238, 0.2),
+      0em 2.5em 0 0em rgba(34, 211, 238, 0.2),
+      -1.8em 1.8em 0 0em rgba(34, 211, 238, 0.25),
+      -2.6em 0em 0 0em rgba(34, 211, 238, 0.35),
+      -1.8em -1.8em 0 0em rgba(34, 211, 238, 0.5);
+  }
+}
+
+/* ===============================
+   BANNER / HERO
+================================ */
+
+.banner {
+  background-image: url("/banner-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: screen;
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  .banner {
+    min-height: 100dvh;
+  }
+}
+
+.animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-18px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+/* ===============================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.35);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.55);
+}
+
+/* ===============================
+   MICRO INTERAÇÕES
+================================ */
+
+.border_animation:hover {
+  padding: 12px;
+  animation: border_animation 1s;
+}
+
+@keyframes border_animation {
+  0% {
+    padding: 12px;
+  }
+  50% {
+    padding: 4px;
+  }
+  100% {
+    padding: 12px;
+  }
+}
+
+/* ===============================
+   SLIDER
+================================ */
+
+.sliderContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 120px;
+  top: auto;
+}
+
+@media (max-width: 640px) {
+  .sliderContainer {
+    bottom: 140px;
+  }
+}
+
+@supports (height: 100dvh) {
+  .sliderContainer {
+    top: calc(100dvh - 350px);
+  }
+}
+
+@media (max-width: 640px) {
+  .sliderContainer {
+    top: auto;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+  }
+}
+
+.slider {
+  position: relative;
+  white-space: nowrap;
+}
+
+.slider p {
+  position: relative;
+  margin: 0px;
+  font-weight: 500;
+  padding-right: 50px;
+}
+
+.slider p:nth-of-type(2) {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+
+/* =========================================================
+   FIX PRINCIPAL: o seu fundo real é Tailwind "bg-primary".
+   Sem isso, você NÃO vê mudança.
+========================================================= */
+
+.bg-primary {
+  /* Força a nova identidade por cima do Tailwind */
+  background: radial-gradient(
+      1200px 800px at 20% -10%,
+      rgba(34, 211, 238, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      1000px 700px at 90% 20%,
+      rgba(52, 211, 153, 0.06),
+      transparent 55%
+    ),
+    linear-gradient(180deg, var(--bg-secondary), var(--bg-main)) !important;
+}
+
+/* Overlay semi-transparente para ver o StarsCanvas animado */
+.siteOverlay {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 800px at 20% -10%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(1000px 700px at 90% 20%, rgba(52, 211, 153, 0.06), transparent 55%),
+    linear-gradient(180deg, rgba(7, 17, 26, 0.55), rgba(5, 7, 13, 0.55));
+}
+
+/* =========================================================
+   FIX: no HERO o banner estava tampando o StarsCanvas
+   Resultado: topo parecia "parado"
+   Com isso, o StarsCanvas fica visível e animado por trás
+========================================================= */
+
+.banner {
+  /* remove o fundo estático que mata a animação */
+  background-image: none !important;
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* opcional: mantém um "clima" de cor, mas sem tampar as estrelas */
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 600px at 15% 15%, rgba(34, 211, 238, 0.10), transparent 60%),
+    radial-gradient(900px 700px at 85% 80%, rgba(52, 211, 153, 0.08), transparent 60%),
+    radial-gradient(700px 500px at 85% 20%, rgba(34, 211, 238, 0.06), transparent 65%);
+  opacity: 0.9;
+}
